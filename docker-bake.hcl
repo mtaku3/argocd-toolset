@@ -18,8 +18,7 @@ target "argocd-toolset" {
   context = "."
   dockerfile = "Dockerfile"
   tags = [
-    "${REGISTRY}/${IMAGE_NAME}:${TAG}",
-    "${REGISTRY}/${IMAGE_NAME}:latest"
+    "${REGISTRY}/${IMAGE_NAME}:${TAG}"
   ]
   platforms = ["linux/amd64", "linux/arm64"]
 }
