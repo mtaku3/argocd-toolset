@@ -4,6 +4,7 @@ Docker image containing essential tools for ArgoCD workflows:
 - **bash**: Command-line shell
 - **yq**: YAML processor
 - **kustomize**: Kubernetes configuration customization tool
+- **helm**: Kubernetes package manager
 
 ## Docker Hub
 
@@ -22,7 +23,8 @@ docker run -it mtaku3/argocd-toolset:latest
 
 - **bash**: Shell for scripting and command execution
 - **yq** (v4.40.5): Command-line YAML/XML/JSON processor
-- **kustomize** (v5.3.0): Kubernetes native configuration management
+- **kustomize** (v5.8.0): Kubernetes native configuration management
+- **helm** (v4.0.4): Kubernetes package manager
 - **git**: Version control system
 - **curl**: Data transfer tool
 
@@ -56,7 +58,7 @@ The image is automatically built and pushed to Docker Hub using `docker/metadata
 - Tagged as `pr-<number>` (for testing, not pushed)
 
 The workflow includes:
-- Multi-architecture builds (amd64, arm/v6, arm/v7, arm64, 386)
+- Multi-architecture builds (amd64, arm64, ppc64le, s390x)
 - GitHub Actions cache for faster builds
 - Automatic tag generation based on git refs
 
@@ -70,10 +72,10 @@ Configure the following secrets in your GitHub repository:
 
 The image is built for multiple architectures:
 - `linux/amd64` (64-bit Intel/AMD)
-- `linux/arm/v6` (ARMv6, e.g., Raspberry Pi 1)
-- `linux/arm/v7` (ARMv7, e.g., Raspberry Pi 2/3)
-- `linux/arm64` (64-bit ARM, e.g., Raspberry Pi 4)
-- `linux/386` (32-bit Intel/AMD)
+- `linux/arm64` (64-bit ARM, e.g., Raspberry Pi 4, Apple Silicon)
+- `linux/ppc64le` (64-bit PowerPC Little Endian)
+- `linux/s390x` (64-bit IBM Z mainframes)
+- `linux/386` (32-bit Intel/AMD) - supported by Helm only
 
 ## License
 
