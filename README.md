@@ -42,10 +42,23 @@ TAG=v1.0.0 docker buildx bake
 
 ## GitHub Actions
 
-The image is automatically built and pushed to Docker Hub on:
-- Push to `main` branch (tagged as `latest`)
-- Git tags starting with `v*` (tagged with the version)
-- Manual workflow dispatch
+The image is automatically built and pushed to Docker Hub using `docker/metadata-action` for intelligent tagging:
+
+**On push to `main` branch:**
+- Tagged as `main` and `latest`
+
+**On version tags (e.g., `v1.2.3`):**
+- `1.2.3` (full version)
+- `1.2` (major.minor)
+- `1` (major)
+
+**On pull requests:**
+- Tagged as `pr-<number>` (for testing, not pushed)
+
+The workflow includes:
+- Multi-architecture builds (amd64, arm64)
+- GitHub Actions cache for faster builds
+- Automatic tag generation based on git refs
 
 ### Required Secrets
 

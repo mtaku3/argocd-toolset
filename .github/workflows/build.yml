@@ -14,6 +14,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -31,23 +34,27 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Extract metadata
+      - name: Docker metadata
         id: meta
-        run: |
-          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
-            TAG=${GITHUB_REF#refs/tags/}
-          else
-            TAG=latest
-          fi
-          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
-          echo "Building with tag: ${TAG}"
+        uses: docker/metadata-action@v5
+        with:
+          images: mtaku3/argocd-toolset
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push with Docker Bake
         uses: docker/bake-action@v4
         with:
-          files: docker-bake.hcl
+          files: |
+            ./docker-bake.hcl
+            ${{ steps.meta.outputs.bake-file }}
+          targets: argocd-toolset
           push: ${{ github.event_name != 'pull_request' }}
-        env:
-          TAG: ${{ steps.meta.outputs.TAG }}
-          REGISTRY: mtaku3
-          IMAGE_NAME: argocd-toolset
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
