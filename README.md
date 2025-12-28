@@ -24,7 +24,7 @@ docker run -it mtaku3/argocd-toolset:latest
 - **bash**: Shell for scripting and command execution
 - **yq** (v4.40.5): Command-line YAML/XML/JSON processor
 - **kustomize** (v5.8.0): Kubernetes native configuration management
-- **helm** (v4.0.4): Kubernetes package manager
+- **helm** (v3.19.4): Kubernetes package manager
 - **git**: Version control system
 - **curl**: Data transfer tool
 

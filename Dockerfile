@@ -37,7 +37,7 @@ RUN case "${TARGETARCH}" in \
     chmod +x /usr/local/bin/kustomize
 
 # Install helm
-ARG HELM_VERSION=v4.0.4
+ARG HELM_VERSION=v3.19.4
 # Map Docker TARGETARCH to Helm arch naming
 RUN case "${TARGETARCH}" in \
         amd64) HELM_ARCH="amd64" ;; \
