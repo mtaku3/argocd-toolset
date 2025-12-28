@@ -56,7 +56,7 @@ The image is automatically built and pushed to Docker Hub using `docker/metadata
 - Tagged as `pr-<number>` (for testing, not pushed)
 
 The workflow includes:
-- Multi-architecture builds (amd64, arm64)
+- Multi-architecture builds (amd64, arm/v6, arm/v7, arm64, 386)
 - GitHub Actions cache for faster builds
 - Automatic tag generation based on git refs
 
@@ -69,8 +69,11 @@ Configure the following secrets in your GitHub repository:
 ## Multi-Architecture Support
 
 The image is built for multiple architectures:
-- `linux/amd64`
-- `linux/arm64`
+- `linux/amd64` (64-bit Intel/AMD)
+- `linux/arm/v6` (ARMv6, e.g., Raspberry Pi 1)
+- `linux/arm/v7` (ARMv7, e.g., Raspberry Pi 2/3)
+- `linux/arm64` (64-bit ARM, e.g., Raspberry Pi 4)
+- `linux/386` (32-bit Intel/AMD)
 
 ## License
 
