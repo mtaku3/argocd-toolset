@@ -25,7 +25,7 @@ RUN case "${TARGETARCH}" in \
 
 # Install kustomize
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize extractVersion=^kustomize/(?<version>.+)$
-ARG KUSTOMIZE_VERSION=v5.8.0
+ARG KUSTOMIZE_VERSION=v5.8.3
 # Map Docker TARGETARCH to kustomize arch naming
 RUN case "${TARGETARCH}" in \
         amd64) KUSTOMIZE_ARCH="amd64" ;; \
