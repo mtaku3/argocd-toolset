@@ -9,6 +9,7 @@ RUN apk add --no-cache \
 
 # Install yq
 ARG TARGETARCH
+# renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.40.5
 # Map Docker TARGETARCH to yq binary naming
 RUN case "${TARGETARCH}" in \
@@ -23,6 +24,7 @@ RUN case "${TARGETARCH}" in \
     chmod +x /usr/local/bin/yq
 
 # Install kustomize
+# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize extractVersion=^kustomize/(?<version>.+)$
 ARG KUSTOMIZE_VERSION=v5.8.0
 # Map Docker TARGETARCH to kustomize arch naming
 RUN case "${TARGETARCH}" in \
@@ -37,6 +39,7 @@ RUN case "${TARGETARCH}" in \
     chmod +x /usr/local/bin/kustomize
 
 # Install helm
+# renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=v3.19.4
 # Map Docker TARGETARCH to Helm arch naming
 RUN case "${TARGETARCH}" in \
