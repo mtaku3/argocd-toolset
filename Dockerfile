@@ -40,7 +40,7 @@ RUN case "${TARGETARCH}" in \
 
 # Install helm
 # renovate: datasource=github-releases depName=helm/helm
-ARG HELM_VERSION=v3.19.4
+ARG HELM_VERSION=v3.22.1
 # Map Docker TARGETARCH to Helm arch naming
 RUN case "${TARGETARCH}" in \
         amd64) HELM_ARCH="amd64" ;; \
