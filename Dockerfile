@@ -10,7 +10,7 @@ RUN apk add --no-cache \
 # Install yq
 ARG TARGETARCH
 # renovate: datasource=github-releases depName=mikefarah/yq
-ARG YQ_VERSION=v4.40.5
+ARG YQ_VERSION=v4.54.3
 # Map Docker TARGETARCH to yq binary naming
 RUN case "${TARGETARCH}" in \
         amd64) YQ_ARCH="amd64" ;; \
